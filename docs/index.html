@@ -1,13 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>SKA · 活动页</title>
-    <script type="module" crossorigin src="/SKA/assets/index-DTDm0rNk.js"></script>
-    <link rel="stylesheet" crossorigin href="/SKA/assets/index-BhjQ9ywv.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SKA · 四页预览</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+          "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        background: #f5f5f7;
+        color: #111827;
+      }
+      .top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 16px;
+        background: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      }
+      .top-title {
+        margin: 0 12px 0 0;
+        font-size: 15px;
+        font-weight: 600;
+        color: #374151;
+      }
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tabs button {
+        padding: 8px 14px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: #f9fafb;
+        color: #374151;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .tabs button:hover {
+        background: #f3f4f6;
+        border-color: #d1d5db;
+      }
+      .tabs button[aria-selected="true"] {
+        background: #2563eb;
+        color: #fff;
+        border-color: #2563eb;
+      }
+      .frame-wrap {
+        height: calc(100vh - 53px);
+        background: #e5e7eb;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+        background: #fff;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <header class="top">
+      <p class="top-title">SKA 页面</p>
+      <div class="tabs" role="tablist" aria-label="页面切换">
+        <button type="button" role="tab" aria-selected="true" data-src="activity/index.html">
+          活动主页
+        </button>
+        <button type="button" role="tab" aria-selected="false" data-src="signin/index.html">
+          签到弹层
+        </button>
+        <button type="button" role="tab" aria-selected="false" data-src="prize-won/index.html">
+          抽中奖品
+        </button>
+        <button type="button" role="tab" aria-selected="false" data-src="store-list/index.html">
+          门店列表
+        </button>
+      </div>
+    </header>
+    <div class="frame-wrap">
+      <iframe id="preview" title="页面预览" src="activity/index.html"></iframe>
+    </div>
+    <script>
+      (function () {
+        var iframe = document.getElementById("preview");
+        var tabs = document.querySelectorAll('.tabs button[role="tab"]');
+        tabs.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            tabs.forEach(function (b) {
+              b.setAttribute("aria-selected", "false");
+            });
+            btn.setAttribute("aria-selected", "true");
+            var src = btn.getAttribute("data-src");
+            if (src) iframe.src = src;
+          });
+        });
+      })();
+    </script>
   </body>
 </html>

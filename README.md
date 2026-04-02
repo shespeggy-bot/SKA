@@ -43,19 +43,21 @@ npm run build
 
 构建产物在各自目录下的 `dist/`。
 
-## GitHub Pages（活动页 `localhost:5173`）
+## GitHub Pages（四页 Tab + `docs/`）
 
 线上地址（启用 Pages 后）：[https://shespeggy-bot.github.io/SKA/](https://shespeggy-bot.github.io/SKA/)
 
+根路径为 **Tab 壳**（`docs/index.html`），可在顶部切换 **活动主页 / 签到弹层 / 抽中奖品 / 门店列表**；各页构建在 `docs/activity`、`docs/signin` 等子目录，对应生产环境 `base` 为 `/SKA/<页面>/`。
+
 1. 在 GitHub 仓库 **Settings → Pages** 中，Source 选 **Deploy from a branch**，Branch 选 **`main`**，文件夹选 **`/docs`**，保存。
-2. 更新展示静态文件时在本机执行：
+2. 更新线上静态资源时在本机执行：
 
 ```bash
-cd pages/activity
-npm run build
-rm -rf ../../docs && mkdir -p ../../docs && cp -r dist/* ../../docs/ && touch ../../docs/.nojekyll
-git add ../../docs && git commit -m "chore: refresh GitHub Pages (activity)" && git push github main
+./scripts/build-github-pages.sh
+git add docs && git commit -m "chore: refresh GitHub Pages (4 pages)" && git push github main
 ```
+
+各子项目本地开发端口不变（5173–5176）；**生产构建**务必用上述脚本一次性生成 `docs/`，避免只拷单页导致路径错乱。
 
 远程 `github` 指向 [https://github.com/shespeggy-bot/SKA.git](https://github.com/shespeggy-bot/SKA.git)；若尚未添加：
 
