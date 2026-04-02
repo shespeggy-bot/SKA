@@ -42,3 +42,23 @@ npm run build
 ```
 
 构建产物在各自目录下的 `dist/`。
+
+## GitHub Pages（活动页 `localhost:5173`）
+
+线上地址（启用 Pages 后）：[https://shespeggy-bot.github.io/SKA/](https://shespeggy-bot.github.io/SKA/)
+
+1. 在 GitHub 仓库 **Settings → Pages** 中，Source 选 **Deploy from a branch**，Branch 选 **`main`**，文件夹选 **`/docs`**，保存。
+2. 更新展示静态文件时在本机执行：
+
+```bash
+cd pages/activity
+npm run build
+rm -rf ../../docs && mkdir -p ../../docs && cp -r dist/* ../../docs/ && touch ../../docs/.nojekyll
+git add ../../docs && git commit -m "chore: refresh GitHub Pages (activity)" && git push github main
+```
+
+远程 `github` 指向 [https://github.com/shespeggy-bot/SKA.git](https://github.com/shespeggy-bot/SKA.git)；若尚未添加：
+
+```bash
+git remote add github https://github.com/shespeggy-bot/SKA.git
+```
