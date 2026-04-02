@@ -16,78 +16,89 @@
         height: 100%;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
           "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-        background: #f5f5f7;
-        color: #111827;
+        background: #1a1a1a;
+        color: #fff;
       }
-      .top {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 16px;
-        background: #fff;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      /* 顶栏：深灰底，与第一张筛选 Tab 示意一致 */
+      .chrome {
+        background: #2d2d2d;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
       }
-      .top-title {
-        margin: 0 12px 0 0;
-        font-size: 15px;
-        font-weight: 600;
-        color: #374151;
+      .chrome-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 14px 16px 16px;
       }
       .tabs {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
       .tabs button {
-        padding: 8px 14px;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        background: #f9fafb;
-        color: #374151;
-        font-size: 13px;
+        appearance: none;
+        -webkit-appearance: none;
+        margin: 0;
+        padding: 10px 22px;
+        border: none;
+        border-radius: 999px;
+        background: #4a4a4a;
+        color: #fff;
+        font-size: 14px;
         font-weight: 500;
+        letter-spacing: 0.02em;
         cursor: pointer;
+        transition: background 0.15s ease, transform 0.1s ease;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
       }
       .tabs button:hover {
-        background: #f3f4f6;
-        border-color: #d1d5db;
+        background: #555;
       }
+      .tabs button:active {
+        transform: scale(0.98);
+      }
+      /* 选中：橙底白字 */
       .tabs button[aria-selected="true"] {
-        background: #2563eb;
+        background: linear-gradient(180deg, #ff8a3d 0%, #ff6a00 55%, #f55a00 100%);
         color: #fff;
-        border-color: #2563eb;
+        box-shadow: 0 2px 8px rgba(255, 106, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      }
+      .tabs button[aria-selected="true"]:hover {
+        background: linear-gradient(180deg, #ff9348 0%, #ff7514 55%, #ff6210 100%);
       }
       .frame-wrap {
-        height: calc(100vh - 53px);
-        background: #e5e7eb;
+        height: calc(100vh - 70px);
+        background: #111;
       }
       iframe {
         width: 100%;
         height: 100%;
         border: 0;
         display: block;
-        background: #fff;
+        background: #000;
       }
     </style>
   </head>
   <body>
-    <header class="top">
-      <p class="top-title">SKA 页面</p>
-      <div class="tabs" role="tablist" aria-label="页面切换">
-        <button type="button" role="tab" aria-selected="true" data-src="activity/index.html">
-          活动主页
-        </button>
-        <button type="button" role="tab" aria-selected="false" data-src="signin/index.html">
-          签到弹层
-        </button>
-        <button type="button" role="tab" aria-selected="false" data-src="prize-won/index.html">
-          抽中奖品
-        </button>
-        <button type="button" role="tab" aria-selected="false" data-src="store-list/index.html">
-          门店列表
-        </button>
+    <header class="chrome" role="banner">
+      <div class="chrome-inner">
+        <div class="tabs" role="tablist" aria-label="页面筛选">
+          <button type="button" role="tab" aria-selected="true" data-src="activity/index.html">
+            活动页
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-src="signin/index.html">
+            签到弹窗
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-src="prize-won/index.html">
+            抽中奖品
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-src="store-list/index.html">
+            门店列表
+          </button>
+        </div>
       </div>
     </header>
     <div class="frame-wrap">
