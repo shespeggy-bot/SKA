@@ -67,9 +67,9 @@
       .tabs button[aria-selected="true"]:hover {
         background: linear-gradient(180deg, #ff9348 0%, #ff7514 55%, #ff6210 100%);
       }
-      /* 逻辑视口仍为 750×1624，整体用 scale 缩小为 50% 展示（375×812 占位） */
+      /* 逻辑视口仍为 750×1624；scale 为相对原尺寸的展示比例（0.25 ≈ 网页上约 187.5×406 占位） */
       :root {
-        --phone-preview-scale: 0.5;
+        --phone-preview-scale: 0.25;
       }
       .stage {
         min-height: calc(100vh - 70px);
@@ -157,7 +157,7 @@
     <main class="stage">
       <div
         class="phone-scaler"
-        aria-label="手机预览：逻辑 750×1624，展示缩放 50%（约 375×812）"
+        aria-label="手机预览：逻辑 750×1624，展示缩放 25%（约 187×406）"
       >
         <div class="phone">
         <div class="phone-screen" id="frames">
