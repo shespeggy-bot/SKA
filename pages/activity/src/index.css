@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Figma codegen mask helpers (used on 活动页 cards) */
+@layer utilities {
+  .mask-alpha {
+    mask-mode: alpha;
+  }
+  .mask-intersect {
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+  .mask-no-clip {
+    mask-clip: no-clip;
+  }
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "PingFang SC", "PingFang TC", "Hiragino Sans GB", "Microsoft YaHei", system-ui,
+    sans-serif;
+  background: #1a1a1a;
+}
